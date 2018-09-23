@@ -7,9 +7,21 @@
   carousel {
     position: fixed;
     bottom: 0;
+    left: 0;
+
+    /deep/ .right, /deep/ .left {
+      display: none;
+    }
   }
 
   img {
     width: 100%;
+  }
+  
+  .cropped {
+    @media (min-width: 1130px){
+      position: relative;
+      top: 300px;
+    }
   }
 }
