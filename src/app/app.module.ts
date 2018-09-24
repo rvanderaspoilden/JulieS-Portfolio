@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.route';
-import {HomeModule} from './home/home.module';
+import {HomeModule} from './pages/home/home.module';
 import {HeaderModule} from './header/header.module';
 
 @NgModule({

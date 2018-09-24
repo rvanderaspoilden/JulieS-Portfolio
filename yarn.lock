@@ -4019,6 +4019,10 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
 
+ngx-agile-slider@^1.0.0-alpha.8:
+  version "1.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/ngx-agile-slider/-/ngx-agile-slider-1.0.0-alpha.8.tgz#1436ade683ff5ad5cbff4517f275861fbcfb0b58"
+
 ngx-bootstrap@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-3.0.1.tgz#e98d2fc6340f32a9d358cd08e8fda7dcb23bdab3"
