@@ -1,0 +1,55 @@
+.dropdown-parent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .itemMenu {
+    font-family: 'orlando';
+    font-size: 1.3em;
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    width: 170px;
+    height: 100%;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 7px;
+    transition: background-color 0.5s;
+  }
+
+  .itemMenuActive {
+    background-color: #e4e4e4;
+  }
+
+  .itemMenu:hover {
+    @extend .itemMenuActive;
+  }
+
+  .dropdown-container {
+    position: absolute;
+    top: 70px;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    .itemMenu {
+      background-color: rgba(240, 240, 240, 1);
+      text-decoration: none;
+    }
+
+    .itemMenu:hover {
+      @extend .itemMenuActive;
+    }
+  }
+
+  .show {
+    opacity: 1;
+  }
+
+  .hide {
+    opacity: 0;
+  }
+}

@@ -1,11 +1,11 @@
 <a routerLink="/home" id="title">Julie Sebadelha</a>
 
 <div id="menu">
-  <a routerLink="/home" routerLinkActive="itemMenuActive" class="itemMenu">Home</a>
-  <a routerLink="/series" routerLinkActive="itemMenuActive" class="itemMenu">Series</a>
-  <a routerLink="/landscape" routerLinkActive="itemMenuActive" class="itemMenu">Landscape</a>
-  <a routerLink="/portrait" routerLinkActive="itemMenuActive" class="itemMenu">Portrait</a>
-  <a routerLink="/contact" routerLinkActive="itemMenuActive" class="itemMenu">Contact me</a>
+  <app-dropdown [link]="homeLink"></app-dropdown>
+  <app-dropdown [link]="seriesLink"></app-dropdown>
+  <app-dropdown [link]="landscapeLink"></app-dropdown>
+  <app-dropdown [link]="portraitLink"></app-dropdown>
+  <app-dropdown [link]="contactLink"></app-dropdown>
 </div>
 
 <div id="social_network">

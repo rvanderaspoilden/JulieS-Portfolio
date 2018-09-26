@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Link } from '../models/link';
+import { Link } from '../features/dropdown/models/link';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +8,22 @@ import { Link } from '../models/link';
 })
 export class HeaderComponent implements OnInit {
 
-  public seriesLink: Link[];
+  public seriesLink: Link;
+  public homeLink: Link;
+  public landscapeLink: Link;
+  public contactLink: Link;
+  public portraitLink: Link;
 
   constructor() { }
 
   ngOnInit() {
-    this.seriesLink = [];
-    this.seriesLink.push(new Link('Serie 1', '#'), new Link('Serie 2', '#'));
+    this.seriesLink = new Link('Series', '/series');
+    this.seriesLink.children = [new Link('Le Sale', '#'), new Link('La Moula', '#')];
+
+    this.homeLink = new Link('Home', '/home');
+    this.landscapeLink = new Link('Landscape', '/landscape');
+    this.contactLink = new Link('Contact me', '/contact');
+    this.portraitLink = new Link('Portrait', '/portrait');
   }
 
 }
