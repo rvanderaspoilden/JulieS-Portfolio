@@ -5,8 +5,8 @@
 
   <div class="dropdown-container" [ngClass]="{'show': link.displayChildren, 'hide': !link.displayChildren}">
     <div *ngIf="link.displayChildren">
-      <a [routerLink]="linkChild.href"
-         [queryParams]="{href: linkChild.href}"
+      <a [routerLink]="link.href"
+         [queryParams]="{href: linkChild.name}"
          routerLinkActive="itemMenuActive"
          class="itemMenu"
          *ngFor="let linkChild of link.children"> {{ linkChild.name }} </a>

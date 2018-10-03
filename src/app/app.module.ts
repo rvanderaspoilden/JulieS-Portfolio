@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.route';
 import {HomeModule} from './pages/home/home.module';
 import {HeaderModule} from './header/header.module';
+import { SeriesModule } from './pages/series/series.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {HeaderModule} from './header/header.module';
     // My Modules
     HomeModule,
     HeaderModule,
+    SeriesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
