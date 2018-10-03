@@ -6,22 +6,10 @@
 </div>
 
 <div id="img-container">
-  <div class="column">
-    <div *ngFor="let href of column1" class="img-legend">
-      <img [src]="href"/>
-      <span class="legend">It's a legend</span>
-    </div>
-  </div>
-  <div class="column">
-    <div *ngFor="let href of column2" class="img-legend">
-      <img [src]="href"/>
-      <span class="legend">It's a legend</span>
-    </div>
-  </div>
-  <div class="column">
-    <div *ngFor="let href of column3" class="img-legend">
-      <img [src]="href"/>
-      <span class="legend">It's a legend</span>
+  <div class="column" *ngFor="let columnKey of columnsKeys">
+    <div *ngFor="let image of columns[columnKey]" class="img-legend" (mouseenter)="image.displayLegend = true" (mouseleave)="image.displayLegend = false">
+      <img [src]="image.src"/>
+      <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
     </div>
   </div>
 </div>

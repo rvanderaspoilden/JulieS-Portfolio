@@ -73,6 +73,16 @@
           background-color: rgba(0,0,0,0.7);
           left: 0.5vw;
           padding-left: 10px;
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+
+        .show {
+          opacity: 1;
+        }
+
+        .hide {
+          opacity: 0;
         }
       }
 

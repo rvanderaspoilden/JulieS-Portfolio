@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Image } from '../../models/image';
+import { ImageColumns } from '../../models/image-columns';
 
 @Component({
   selector: 'app-series',
@@ -7,17 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeriesComponent implements OnInit {
 
-  public column1: string[];
-  public column2: string[];
-  public column3: string[];
+  public columns: ImageColumns;
+  public columnsKeys: string[];
 
   constructor() {
   }
 
   ngOnInit() {
-    this.column1 = ['/assets/images/pictures/1.jpg', '/assets/images/pictures/2.jpg', '/assets/images/pictures/3.jpg'];
-    this.column2 = ['/assets/images/pictures/2.jpg', '/assets/images/pictures/1.jpg', '/assets/images/pictures/3.jpg'];
-    this.column3 = ['/assets/images/pictures/3.jpg', '/assets/images/pictures/3.jpg', '/assets/images/pictures/1.jpg'];
+    const image1 = new Image('/assets/images/pictures/1.jpg', 'Legend 1');
+    const image2 = new Image('/assets/images/pictures/2.jpg', 'Legend 2');
+    const image3 = new Image('/assets/images/pictures/3.jpg', 'Legend 3');
+    const image4 = new Image('/assets/images/pictures/4.jpg', 'Legend 4');
+
+    this.columns = new ImageColumns();
+    this.columns.column1 = [new Image('/assets/images/pictures/1.jpg', 'Legend 1'), new Image('/assets/images/pictures/2.jpg', 'Legend 2'), new Image('/assets/images/pictures/3.jpg', 'Legend 3'), new Image('/assets/images/pictures/4.jpg', 'Legend 4')];
+    this.columns.column2 = [new Image('/assets/images/pictures/1.jpg', 'Legend 1'), new Image('/assets/images/pictures/2.jpg', 'Legend 2'), new Image('/assets/images/pictures/3.jpg', 'Legend 3'), new Image('/assets/images/pictures/4.jpg', 'Legend 4')];
+    this.columns.column3 = [new Image('/assets/images/pictures/1.jpg', 'Legend 1'), new Image('/assets/images/pictures/2.jpg', 'Legend 2'), new Image('/assets/images/pictures/3.jpg', 'Legend 3'), new Image('/assets/images/pictures/4.jpg', 'Legend 4')];
+
+    this.columnsKeys = Object.keys(this.columns);
   }
 
 }
