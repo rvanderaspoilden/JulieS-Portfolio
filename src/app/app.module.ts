@@ -7,6 +7,7 @@ import {ROUTES} from './app.route';
 import {HomeModule} from './pages/home/home.module';
 import {HeaderModule} from './header/header.module';
 import { SeriesModule } from './pages/series/series.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SeriesModule } from './pages/series/series.module';
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
+    BrowserAnimationsModule,
 
     // My Modules
     HomeModule,

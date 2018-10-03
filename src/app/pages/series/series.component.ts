@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Image } from '../../models/image';
 import { ImageColumns } from '../../models/image-columns';
+import { MatDialog } from '@angular/material';
+import { ViewImageComponent } from '../../features/view-image/view-image.component';
 
 @Component({
   selector: 'app-series',
@@ -12,7 +14,7 @@ export class SeriesComponent implements OnInit {
   public columns: ImageColumns;
   public columnsKeys: string[];
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -27,6 +29,10 @@ export class SeriesComponent implements OnInit {
     this.columns.column3 = [new Image('/assets/images/pictures/1.jpg', 'Legend 1'), new Image('/assets/images/pictures/2.jpg', 'Legend 2'), new Image('/assets/images/pictures/3.jpg', 'Legend 3'), new Image('/assets/images/pictures/4.jpg', 'Legend 4')];
 
     this.columnsKeys = Object.keys(this.columns);
+  }
+
+  public viewImage(image: Image): void {
+    this.dialog.open(ViewImageComponent, { data: image }).afterClosed().subscribe();
   }
 
 }
