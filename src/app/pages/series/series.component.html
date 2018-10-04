@@ -13,7 +13,7 @@
          (mouseenter)="image.displayLegend = true"
          (mouseleave)="image.displayLegend = false">
 
-      <img [src]="image.src"/>
+      <img [src]="image.src" oncontextmenu="return false;" />
       <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
     </div>
   </div>

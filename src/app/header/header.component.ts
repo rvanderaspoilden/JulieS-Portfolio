@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.seriesLink = new Link('Series', '/series');
-    this.seriesLink.children = [new Link('Le Sale', '#'), new Link('La Moula', '#')];
+    this.seriesLink.children = [new Link('Old city - la valette III', '#'), new Link('La Moula', '#')];
 
     this.homeLink = new Link('Home', '/home');
     this.landscapeLink = new Link('Landscape', '/landscape');
