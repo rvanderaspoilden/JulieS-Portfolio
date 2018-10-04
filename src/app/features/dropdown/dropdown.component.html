@@ -1,6 +1,7 @@
 <div class="dropdown-parent" (mouseleave)="link.displayChildren = false" (mouseover)="link.displayChildren = true">
   <a [routerLink]="link.href"
      routerLinkActive="itemMenuActive"
+     [ngClass]="{'disabled': link.children}"
      class="itemMenu"> {{ link.name }} </a>
 
   <div class="dropdown-container" [ngClass]="{'show': link.displayChildren, 'hide': !link.displayChildren}">

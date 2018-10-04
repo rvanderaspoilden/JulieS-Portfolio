@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SeriesComponent } from './series.component';
+import { LandscapeComponent } from './landscape.component';
 import { RouterModule } from '@angular/router';
-import { ROUTES } from './series.route';
+import { ROUTES } from './landscape.route';
 import { MatDialogModule } from '@angular/material';
 import { ViewImageModule } from '../../features/view-image/view-image.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild(ROUTES),
     MatDialogModule,
     ViewImageModule,
-    RouterModule.forChild(ROUTES),
   ],
-  declarations: [SeriesComponent],
+  declarations: [LandscapeComponent]
 })
-export class SeriesModule { }
+export class LandscapeModule { }

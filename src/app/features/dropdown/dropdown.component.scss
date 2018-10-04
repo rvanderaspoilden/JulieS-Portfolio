@@ -21,6 +21,11 @@
     transition: background-color 0.5s;
   }
 
+  .disabled {
+    pointer-events: none;
+    cursor: pointer;
+  }
+
   .itemMenuActive {
     background-color: #e4e4e4;
   }

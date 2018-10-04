@@ -8,6 +8,7 @@ import {HomeModule} from './pages/home/home.module';
 import {HeaderModule} from './header/header.module';
 import { SeriesModule } from './pages/series/series.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandscapeModule } from './pages/landscape/landscape.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     HeaderModule,
     SeriesModule,
+    LandscapeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
