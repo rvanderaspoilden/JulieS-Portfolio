@@ -9,6 +9,7 @@ import {HeaderModule} from './header/header.module';
 import { SeriesModule } from './pages/series/series.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandscapeModule } from './pages/landscape/landscape.module';
+import { PortraitModule } from './pages/portrait/portrait.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LandscapeModule } from './pages/landscape/landscape.module';
     HeaderModule,
     SeriesModule,
     LandscapeModule,
+    PortraitModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

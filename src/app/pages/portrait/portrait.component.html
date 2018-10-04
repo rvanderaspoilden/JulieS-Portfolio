@@ -1,0 +1,12 @@
+<div id="img-container">
+  <div class="column" *ngFor="let columnKey of columnsKeys">
+    <div *ngFor="let image of columns[columnKey]"
+         class="img-legend"
+         (click)="viewImage(image)"
+         (mouseenter)="image.displayLegend = true"
+         (mouseleave)="image.displayLegend = false">
+
+      <img [src]="image.src" oncontextmenu="return false;" />
+      <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
+    </div>
+  </div>
