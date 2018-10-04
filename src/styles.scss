@@ -21,6 +21,11 @@ html, body {
   src: url("assets/fonts/orlando.ttf");
 }
 
+@font-face {
+  font-family: "NordicaHairline";
+  src: url("assets/fonts/NordicaHairline.otf");
+}
+
 #img-container {
   padding: .5vw;
   display: -ms-flexbox;
