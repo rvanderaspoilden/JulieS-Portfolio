@@ -13,6 +13,7 @@ import { PortraitModule } from './pages/portrait/portrait.module';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { GetPicturesResolver } from './resolvers/get-pictures.resolver';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     LandscapeModule,
     PortraitModule,
   ],
-  providers: [],
+  providers: [GetPicturesResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {
