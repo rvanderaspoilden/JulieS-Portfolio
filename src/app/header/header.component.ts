@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from '../features/dropdown/models/link';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +10,41 @@ import { Link } from '../features/dropdown/models/link';
 })
 export class HeaderComponent implements OnInit {
 
-  public seriesLink: Link;
   public homeLink: Link;
-  public landscapeLink: Link;
   public contactLink: Link;
-  public portraitLink: Link;
+  public links: Link[];
 
-  constructor() { }
+  constructor(private db: AngularFireDatabase) {
+  }
 
   ngOnInit() {
-    this.seriesLink = new Link('Series', '/series');
-    this.seriesLink.children = [new Link('Old city - la valette III', '#'), new Link('La Moula', '#')];
-
     this.homeLink = new Link('Home', '/home');
-    this.landscapeLink = new Link('Landscape', '/landscape');
     this.contactLink = new Link('Contact me', '/contact');
-    this.portraitLink = new Link('Portrait', '/portrait');
+
+    this.db.object<any>('/').valueChanges().subscribe(links => {
+      this.links = [];
+      Object.keys(links).forEach(link => {
+        const linkTmp = new Link();
+        linkTmp.name = link;
+        linkTmp.href = '/' + link;
+        linkTmp.children = [];
+
+        Object.keys(links[link]).forEach(underlink => {
+          if (underlink !== 'pictures' && underlink !== 'context') {
+            const underlinkTmp = new Link();
+            underlinkTmp.name = underlink;
+            underlinkTmp.href = '/' + underlink;
+            linkTmp.children.push(underlinkTmp);
+          }
+        });
+
+        if (!linkTmp.children.length) {
+          delete  linkTmp.children;
+        }
+
+        this.links.push(linkTmp);
+      });
+    });
   }
 
 }

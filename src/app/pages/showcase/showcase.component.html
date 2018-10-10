@@ -1,4 +1,11 @@
-<div id="img-container">
+<div id="information" *ngIf="displayInfo">
+  <span>{{ title }}</span>
+  <div>
+    {{ context }}
+  </div>
+</div>
+
+<div id="img-container" [ngClass]="{'margin': !displayInfo}">
   <div class="column" *ngFor="let columnKey of columnsKeys">
     <div *ngFor="let image of columns[columnKey]"
          class="img-legend"
@@ -10,3 +17,4 @@
       <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
     </div>
   </div>
+</div>

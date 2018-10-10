@@ -3,9 +3,7 @@
 
   <div id="menu">
     <app-dropdown [link]="homeLink"></app-dropdown>
-    <app-dropdown [link]="seriesLink"></app-dropdown>
-    <app-dropdown [link]="landscapeLink"></app-dropdown>
-    <app-dropdown [link]="portraitLink"></app-dropdown>
+    <app-dropdown [link]="link" *ngFor="let link of links"></app-dropdown>
     <app-dropdown [link]="contactLink"></app-dropdown>
   </div>
 </div>

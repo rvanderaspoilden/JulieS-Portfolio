@@ -39,6 +39,8 @@
     top: 70px;
     opacity: 0;
     transition: opacity 0.5s;
+    border: 2px rgba(0,0,0,0.5) solid;
+    border-top: none;
 
     .itemMenu {
       background-color: white;
