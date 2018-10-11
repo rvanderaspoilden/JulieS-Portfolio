@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from '../features/dropdown/models/link';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,18 @@ export class HeaderComponent implements OnInit {
   public contactLink: Link;
   public links: Link[];
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if (this.links) {
+          this.checkQueryParams();
+        } else {
+          this.router.navigateByUrl('/home');
+        }
+      }
+    });
   }
 
   ngOnInit() {
@@ -44,6 +56,32 @@ export class HeaderComponent implements OnInit {
 
         this.links.push(linkTmp);
       });
+    });
+  }
+
+  private checkQueryParams(): void {
+    this.route.queryParams.subscribe(param => {
+      if (param.hasOwnProperty('href')) {
+        const query = param['href'];
+        let findMatch = false;
+
+        this.links.forEach(link => {
+          if (link.children) {
+            const match = _.find(link.children, child => {
+              return child.name === query;
+            });
+
+            if (match) {
+              findMatch = true;
+              return true;
+            }
+          }
+        });
+
+        if (!findMatch) {
+          this.router.navigateByUrl('/home');
+        }
+      }
     });
   }
 
