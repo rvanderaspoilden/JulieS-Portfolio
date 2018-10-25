@@ -1,0 +1,29 @@
+<div class="columnContainer">
+  <span class="title">Choose category</span>
+
+  <div class="itemContainer">
+    <button mat-raised-button color="primary" (click)="setCategory('Landscape')" [ngClass]="{'fadeOut': canFadeButton('category','Landscape')}">LANDSCAPE</button>
+    <button mat-raised-button color="primary" (click)="setCategory('PORTRAIT')" [ngClass]="{'fadeOut': canFadeButton('category','PORTRAIT')}">PORTRAIT</button>
+    <button mat-raised-button color="primary" (click)="setCategory('SERIES')" [ngClass]="{'fadeOut': canFadeButton('category','SERIES')}">SERIES</button>
+  </div>
+</div>
+
+<div class="columnContainer" *ngIf="categorySelected">
+  <span class="title">Choose sub-category</span>
+
+  <div class="itemContainer">
+    <button mat-raised-button color="primary" (click)="setSubCategory('Landscape')">LANDSCAPE</button>
+    <button mat-raised-button color="primary">PORTRAIT</button>
+    <button mat-raised-button color="primary">SERIES</button>
+  </div>
+</div>
+
+
+<div class="columnContainer" *ngIf="subCategorySelected">
+  <span class="title">Action</span>
+
+  <div class="itemContainer">
+    <button mat-raised-button color="warn">DELETE</button>
+  </div>
+</div>
+

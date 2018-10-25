@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from '../features/dropdown/models/link';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import * as _ from 'lodash';
 
 @Component({
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         if (this.links) {
           this.checkQueryParams();
-        } else {
+        } else if (this.router.url !== '/admin') {
           this.router.navigateByUrl('/home');
         }
       }

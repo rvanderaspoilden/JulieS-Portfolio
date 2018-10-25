@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { GetPicturesResolver } from './resolvers/get-pictures.resolver';
+import { AdminModule } from './pages/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { GetPicturesResolver } from './resolvers/get-pictures.resolver';
 
     // My Modules
     HomeModule,
+    AdminModule,
     HeaderModule,
     ShowcaseModule,
   ],
