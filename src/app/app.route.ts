@@ -1,15 +1,16 @@
 import {Routes} from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AboutComponent } from './pages/about/about.component';
 
 export const ROUTES: Routes = [
   {
-    path: '',
-    redirectTo: '/home',
+    path: 'admin',
+    component: AdminComponent,
     pathMatch: 'full'
   },
   {
-    path: 'admin',
-    component: AdminComponent,
+    path: '',
+    redirectTo: '/home',
     pathMatch: 'full'
   }
 ];

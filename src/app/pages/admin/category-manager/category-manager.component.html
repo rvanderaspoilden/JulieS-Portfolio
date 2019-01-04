@@ -2,28 +2,31 @@
   <span class="title">Choose category</span>
 
   <div class="itemContainer">
-    <button mat-raised-button color="primary" (click)="setCategory('Landscape')" [ngClass]="{'fadeOut': canFadeButton('category','Landscape')}">LANDSCAPE</button>
-    <button mat-raised-button color="primary" (click)="setCategory('PORTRAIT')" [ngClass]="{'fadeOut': canFadeButton('category','PORTRAIT')}">PORTRAIT</button>
-    <button mat-raised-button color="primary" (click)="setCategory('SERIES')" [ngClass]="{'fadeOut': canFadeButton('category','SERIES')}">SERIES</button>
+    <button mat-raised-button color="primary" (click)="setCategory('LANDSCAPES')" [ngClass]="{'fadeOut': canFadeButton('category','LANDSCAPES')}">LANDSCAPES</button>
+    <button mat-raised-button color="primary" (click)="setCategory('PORTRAITS')" [ngClass]="{'fadeOut': canFadeButton('category','PORTRAITS')}">PORTRAITS</button>
+    <button mat-raised-button color="primary" (click)="setCategory('PUBLICATIONS')" [ngClass]="{'fadeOut': canFadeButton('category','PUBLICATIONS')}">PUBLICATIONS</button>
+    <button mat-raised-button color="primary" (click)="setCategory('REPORTAGES')" [ngClass]="{'fadeOut': canFadeButton('category','REPORTAGES')}">REPORTAGES</button>
   </div>
 </div>
 
 <div class="columnContainer" *ngIf="categorySelected">
-  <span class="title">Choose sub-category</span>
+  <span class="title">Choose sub-category <button mat-stroked-button (click)="switchToCreate()">+</button></span>
 
   <div class="itemContainer">
-    <button mat-raised-button color="primary" (click)="setSubCategory('Landscape')">LANDSCAPE</button>
-    <button mat-raised-button color="primary">PORTRAIT</button>
-    <button mat-raised-button color="primary">SERIES</button>
+    <button mat-raised-button color="primary" *ngFor="let subcategory of subCategories" (click)="setSubCategory(subcategory)">{{ subcategory }}</button>
+    <span *ngIf="!subcategory || !subCategories.length">No sub-categories found...</span>
   </div>
 </div>
 
 
-<div class="columnContainer" *ngIf="subCategorySelected">
+<div class="columnContainer" *ngIf="subCategorySelected || createSubCategory">
   <span class="title">Action</span>
 
   <div class="itemContainer">
-    <button mat-raised-button color="warn">DELETE</button>
+    <input class="form-control" placeholder="Title" type="text" *ngIf="createSubCategory" [(ngModel)]="newSubCategory" />
+    <textarea class="form-control" placeholder="Intro (optional)" type="text" *ngIf="createSubCategory" [(ngModel)]="intro"></textarea>
+    <button mat-raised-button color="primary" *ngIf="createSubCategory" [disabled]="!newSubCategory" (click)="addSubCategory()">CREATE</button>
+    <button mat-raised-button color="warn" *ngIf="subCategorySelected" (click)="deleteSubcategory()">DELETE</button>
   </div>
 </div>
 

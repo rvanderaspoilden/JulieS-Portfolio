@@ -1,0 +1,34 @@
+<div class="columns">
+  <div class="columnContainer">
+    <span class="title">Choose category</span>
+
+    <div class="itemContainer">
+      <button mat-raised-button color="primary" (click)="setCategory('Landscape')" [ngClass]="{'fadeOut': canFadeButton('category','Landscape')}">LANDSCAPE</button>
+      <button mat-raised-button color="primary" (click)="setCategory('PORTRAIT')" [ngClass]="{'fadeOut': canFadeButton('category','PORTRAIT')}">PORTRAIT</button>
+      <button mat-raised-button color="primary" (click)="setCategory('SERIES')" [ngClass]="{'fadeOut': canFadeButton('category','SERIES')}">SERIES</button>
+    </div>
+  </div>
+
+  <div class="columnContainer">
+    <span class="title">Choose sub-category</span>
+
+    <div class="itemContainer">
+      <button mat-raised-button color="primary" *ngFor="let subcategory of subCategories" (click)="setSubCategory(subcategory)">{{ subcategory }}</button>
+      <span *ngIf="!subcategory || !subCategories.length">No sub-categories found...</span>
+    </div>
+  </div>
+</div>
+
+<div id="pictures" *ngIf="picturesToDisplay && picturesToDisplay.length">
+    <div *ngFor="let image of picturesToDisplay"
+         class="img-legend"
+         (click)="viewImage(image)"
+         (mouseenter)="image.displayLegend = true"
+         (mouseleave)="image.displayLegend = false">
+
+      <img [src]="image.href" oncontextmenu="return false;" />
+      <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
+    </div>
+</div>
+
+

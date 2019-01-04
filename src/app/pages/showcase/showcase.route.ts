@@ -3,15 +3,19 @@ import { ShowcaseComponent } from './showcase.component';
 
 export const ROUTES: Routes = [
   {
-    path: 'series',
+    path: 'publications',
     component: ShowcaseComponent
   },
   {
-    path: 'landscape',
+    path: 'reportages',
     component: ShowcaseComponent
   },
   {
-    path: 'portrait',
+    path: 'landscapes',
+    component: ShowcaseComponent
+  },
+  {
+    path: 'portraits',
     component: ShowcaseComponent
   }
 ];

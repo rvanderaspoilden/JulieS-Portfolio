@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.homeLink = new Link('Home', '/home');
-    this.contactLink = new Link('Contact me', '/contact');
+    this.contactLink = new Link('Contact me', '/about');
 
     this.db.object<any>('/').valueChanges().subscribe(links => {
       this.links = [];
@@ -56,6 +56,8 @@ export class HeaderComponent implements OnInit {
 
         this.links.push(linkTmp);
       });
+
+      this.links = this.links.reverse();
     });
   }
 
