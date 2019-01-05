@@ -1,7 +1,6 @@
 :host {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
   min-height: 65px;
   height: 70px;
@@ -12,10 +11,21 @@
   z-index: 10;
   min-width: 1280px;
 
-  -moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.6);
-  -webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.6);
-  -o-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.6);
-  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.6);
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .separator {
+    height: 2px;
+    width: 83.55vw;
+    position: relative;
+    top: 1px;
+    border: 0.5px rgb(150,150,150) solid;
+    align-self: flex-end;
+  }
 
   #left_part {
     display: flex;
@@ -25,7 +35,7 @@
   #title {
     font-size: 2.5em;
     text-align: center;
-    font-family: 'NordicaHairline';
+    font-family: 'uiBold';
     margin: 0 10px;
     color: black;
     text-decoration: none;
@@ -37,6 +47,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    border-bottom: 1px black solid;
   }
 
   #social_network {
@@ -44,7 +55,6 @@
     align-items: center;
     justify-content: space-evenly;
     height: 100%;
-    position: absolute;
     right: 0;
 
     a {

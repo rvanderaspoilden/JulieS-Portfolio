@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.homeLink = new Link('Home', '/home');
-    this.contactLink = new Link('Contact me', '/contact');
+    this.contactLink = new Link('About me', '/contact');
 
     this.db.object<any>('/').valueChanges().subscribe(links => {
       this.links = [];
