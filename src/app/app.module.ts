@@ -13,6 +13,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { GetPicturesResolver } from './resolvers/get-pictures.resolver';
 import { AdminModule } from './pages/admin/admin.module';
+import { AboutComponent } from './pages/about/about.component';
+import { AboutModule } from './pages/about/about.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { AdminModule } from './pages/admin/admin.module';
     AdminModule,
     HeaderModule,
     ShowcaseModule,
+    AboutModule,
   ],
   providers: [GetPicturesResolver],
   bootstrap: [AppComponent]

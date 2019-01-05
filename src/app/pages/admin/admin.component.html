@@ -1,3 +1,5 @@
 <app-admin-header (panelToManageChanged)="setPanelToManage($event)"></app-admin-header>
 
 <app-category-manager *ngIf="panelToManage === 'sub-categories'"></app-category-manager>
+
+<app-picture-manager *ngIf="panelToManage === 'pictures'"></app-picture-manager>

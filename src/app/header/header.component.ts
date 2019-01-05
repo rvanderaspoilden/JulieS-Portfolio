@@ -56,6 +56,8 @@ export class HeaderComponent implements OnInit {
 
         this.links.push(linkTmp);
       });
+
+      this.links = this.links.reverse();
     });
   }
 

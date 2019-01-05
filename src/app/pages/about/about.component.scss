@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .content {
+    width: 890px;
+    height: 450px;
+    display: flex;
+    background-color: #5a5055;
+    color: white;
+    padding: 40px 20px;
+
+    .left_side {
+      display: flex;
+      flex-direction: column;
+      flex: 0.3;
+    }
+
+    .right_side {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0.7;
+      text-align: justify;
+      font-size: 17px;
+
+      img {
+        max-width: 150px;
+        float: right;
+        position: relative;
+        margin: 12px;
+        bottom: 30px;
+      }
+    }
+  }
+}

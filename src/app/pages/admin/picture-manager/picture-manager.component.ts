@@ -3,24 +3,29 @@ import { Link } from '../../../features/dropdown/models/link';
 import { FirebaseDatabase } from '@angular/fire';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as _ from 'lodash';
+import { Image } from '../../../models/image';
+import { ViewImageComponent } from '../../../features/view-image/view-image.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-category-manager',
-  templateUrl: './category-manager.component.html',
-  styleUrls: ['./category-manager.component.scss']
+  selector: 'app-picture-manager',
+  templateUrl: './picture-manager.component.html',
+  styleUrls: ['./picture-manager.component.scss']
 })
-export class CategoryManagerComponent implements OnInit {
+export class PictureManagerComponent implements OnInit {
 
   public categorySelected: string;
   public subCategorySelected: string;
+
+  public picturesToDisplay: Image[];
 
   public links: Link[];
   public subCategories: string[];
   public createSubCategory: boolean;
   public newSubCategory: string;
-  public intro: string;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -30,6 +35,7 @@ export class CategoryManagerComponent implements OnInit {
         const linkTmp = new Link();
         linkTmp.name = link;
         linkTmp.href = '/' + link;
+        linkTmp.pictures = links[link]['pictures'];
         linkTmp.children = [];
 
         Object.keys(links[link]).forEach(underlink => {
@@ -37,6 +43,7 @@ export class CategoryManagerComponent implements OnInit {
             const underlinkTmp = new Link();
             underlinkTmp.name = underlink;
             underlinkTmp.href = '/' + underlink;
+            underlinkTmp.pictures = links[link][underlink]['pictures'];
             linkTmp.children.push(underlinkTmp);
           }
         });
@@ -47,6 +54,8 @@ export class CategoryManagerComponent implements OnInit {
 
         this.links.push(linkTmp);
       });
+
+      console.log(this.links);
 
       if (this.categorySelected) {
         this.assignSubcategories();
@@ -77,30 +86,29 @@ export class CategoryManagerComponent implements OnInit {
       this.subCategories = _.map(linkFound.children, 'name');
     } else {
       this.subCategories = [];
+      this.getImages();
     }
   }
 
   public setSubCategory(value: string): void {
     this.subCategorySelected = value;
     this.createSubCategory = false;
+    this.getImages();
   }
 
-  public deleteSubcategory(): void {
-    this.db.database.ref('/' + this.categorySelected.toLowerCase() + '/' + this.subCategorySelected).remove();
-    this.subCategorySelected = null;
+  public getImages(): void {
+    const linkFound = _.find(this.links, link => link.name.toLowerCase() === this.categorySelected.toLowerCase());
+    if (this.subCategorySelected) {
+      const underlinkFound = _.find(linkFound.children, link => link.name.toLowerCase() === this.subCategorySelected.toLowerCase());
+      this.picturesToDisplay = _.compact(underlinkFound.pictures);
+    } else {
+      this.picturesToDisplay = _.compact(linkFound.pictures);
+    }
+
+    console.log(this.picturesToDisplay);
   }
 
-  public switchToCreate(): void {
-    this.createSubCategory = true;
-    this.subCategorySelected = null;
+  public viewImage(image: Image): void {
+    this.dialog.open(ViewImageComponent, { data: image }).afterClosed().subscribe();
   }
-
-  public addSubCategory(): void {
-    const key = this.db.database.ref('/' + this.categorySelected.toLowerCase() + '/' + this.newSubCategory).set({
-      pictures: 'empty',
-      context: this.intro ? this.intro : ''
-    });
-    console.log(key);
-  }
-
 }
