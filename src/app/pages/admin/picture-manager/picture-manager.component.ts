@@ -21,8 +21,8 @@ export class PictureManagerComponent implements OnInit {
 
   public links: Link[];
   public subCategories: string[];
-  public createSubCategory: boolean;
-  public newSubCategory: string;
+  public canCreateImage: boolean;
+  public newImage: string;
 
   constructor(private db: AngularFireDatabase,
               private dialog: MatDialog) {
@@ -63,6 +63,10 @@ export class PictureManagerComponent implements OnInit {
     });
   }
 
+  public createImage(): void {
+
+  }
+
   public canFadeButton(type: string, valueToCompare: string): boolean {
     if (type === 'category') {
       return this.categorySelected && this.categorySelected !== valueToCompare;
@@ -77,14 +81,17 @@ export class PictureManagerComponent implements OnInit {
     this.subCategorySelected = null;
 
     this.assignSubcategories();
+    this.getImages();
   }
 
   public assignSubcategories(): void {
     const linkFound = _.find(this.links, link => link.name.toLowerCase() === this.categorySelected.toLowerCase());
 
     if (linkFound.hasOwnProperty('children')) {
+      this.canCreateImage = false;
       this.subCategories = _.map(linkFound.children, 'name');
     } else {
+      this.canCreateImage = true;
       this.subCategories = [];
       this.getImages();
     }
@@ -92,7 +99,7 @@ export class PictureManagerComponent implements OnInit {
 
   public setSubCategory(value: string): void {
     this.subCategorySelected = value;
-    this.createSubCategory = false;
+    this.canCreateImage = true;
     this.getImages();
   }
 
@@ -100,15 +107,44 @@ export class PictureManagerComponent implements OnInit {
     const linkFound = _.find(this.links, link => link.name.toLowerCase() === this.categorySelected.toLowerCase());
     if (this.subCategorySelected) {
       const underlinkFound = _.find(linkFound.children, link => link.name.toLowerCase() === this.subCategorySelected.toLowerCase());
-      this.picturesToDisplay = _.compact(underlinkFound.pictures);
-    } else {
-      this.picturesToDisplay = _.compact(linkFound.pictures);
-    }
 
-    console.log(this.picturesToDisplay);
+      this.picturesToDisplay = this.convertToImage(underlinkFound.pictures);
+    } else {
+      if (!linkFound.hasOwnProperty('children')) {
+        this.picturesToDisplay = this.convertToImage(linkFound.pictures);
+      } else {
+        this.picturesToDisplay = [];
+      }
+    }
   }
 
   public viewImage(image: Image): void {
     this.dialog.open(ViewImageComponent, { data: image }).afterClosed().subscribe();
+  }
+
+  public deleteImage(image: Image): void {
+    if (this.subCategorySelected) {
+      this.db.object(this.categorySelected.toLowerCase() + '/' + this.subCategorySelected.toLowerCase() + '/pictures/' + image.id).remove();
+    } else {
+      this.db.object(this.categorySelected.toLowerCase() + '/pictures/' + image.id).remove();
+    }
+  }
+
+  public convertToImage(data: any): Image[] {
+    const images = [];
+
+    if (data && data !== 'empty') {
+      Object.keys(data).forEach(key => {
+        const image = new Image();
+        image.id = key;
+        image.href = data[key].href;
+        image.legend = data[key].legend;
+        image.displayLegend = false;
+
+        images.push(image);
+      });
+    }
+
+    return images;
   }
 }

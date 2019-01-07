@@ -3,9 +3,10 @@
     <span class="title">Choose category</span>
 
     <div class="itemContainer">
-      <button mat-raised-button color="primary" (click)="setCategory('Landscape')" [ngClass]="{'fadeOut': canFadeButton('category','Landscape')}">LANDSCAPE</button>
-      <button mat-raised-button color="primary" (click)="setCategory('PORTRAIT')" [ngClass]="{'fadeOut': canFadeButton('category','PORTRAIT')}">PORTRAIT</button>
-      <button mat-raised-button color="primary" (click)="setCategory('SERIES')" [ngClass]="{'fadeOut': canFadeButton('category','SERIES')}">SERIES</button>
+      <button mat-raised-button color="primary" (click)="setCategory('LANDSCAPES')" [ngClass]="{'fadeOut': canFadeButton('category','LANDSCAPES')}">LANDSCAPES</button>
+      <button mat-raised-button color="primary" (click)="setCategory('PORTRAITS')" [ngClass]="{'fadeOut': canFadeButton('category','PORTRAITS')}">PORTRAITS</button>
+      <button mat-raised-button color="primary" (click)="setCategory('PUBLICATIONS')" [ngClass]="{'fadeOut': canFadeButton('category','PUBLICATIONS')}">PUBLICATIONS</button>
+      <button mat-raised-button color="primary" (click)="setCategory('REPORTAGES')" [ngClass]="{'fadeOut': canFadeButton('category','REPORTAGES')}">REPORTAGES</button>
     </div>
   </div>
 
@@ -17,17 +18,25 @@
       <span *ngIf="!subcategory || !subCategories.length">No sub-categories found...</span>
     </div>
   </div>
+
+  <div class="columnContainer" *ngIf="canCreateImage">
+    <span class="title">Add Image</span>
+
+    <div class="itemContainer">
+      <textarea class="form-control" placeholder="Legend" type="text" [(ngModel)]="newImage"></textarea>
+      <button mat-raised-button color="primary" (click)="createImage()">CREATE</button>
+    </div>
+  </div>
 </div>
 
 <div id="pictures" *ngIf="picturesToDisplay && picturesToDisplay.length">
     <div *ngFor="let image of picturesToDisplay"
          class="img-legend"
-         (click)="viewImage(image)"
          (mouseenter)="image.displayLegend = true"
          (mouseleave)="image.displayLegend = false">
-
-      <img [src]="image.href" oncontextmenu="return false;" />
-      <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
+      <div class="delete" (click)="deleteImage(image)">x</div>
+      <img (click)="viewImage(image)" [src]="image.href" oncontextmenu="return false;" />
+      <span (click)="viewImage(image)" class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
     </div>
 </div>
 

@@ -9,6 +9,22 @@
     position: relative;
     top: 30px;
 
+    .delete {
+      position: absolute;
+      right: -25px;
+      top: -6px;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      color: red;
+      border-radius: 50%;
+      border: 1px red solid;
+      font-family: uiBold;
+    }
+
     .img-legend {
       width: 30%;
       position: relative;
