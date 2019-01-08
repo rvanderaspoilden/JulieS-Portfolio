@@ -23,8 +23,10 @@
     <span class="title">Add Image</span>
 
     <div class="itemContainer">
-      <textarea class="form-control" placeholder="Legend" type="text" [(ngModel)]="newImage"></textarea>
-      <button mat-raised-button color="primary" (click)="createImage()">CREATE</button>
+      <label>File:</label>
+      <input type="file" (change)="curFile = $event" accept=".png,.jpg" />
+      <textarea class="form-control" placeholder="Legend" type="text" [(ngModel)]="legend"></textarea>
+      <button mat-raised-button color="primary" [disabled]="!curFile" (click)="createImage()">CREATE</button>
     </div>
   </div>
 </div>
@@ -36,7 +38,7 @@
          (mouseleave)="image.displayLegend = false">
       <div class="delete" (click)="deleteImage(image)">x</div>
       <img (click)="viewImage(image)" [src]="image.href" oncontextmenu="return false;" />
-      <span (click)="viewImage(image)" class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
+      <span (click)="viewImage(image)" *ngIf="image.legend" class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
     </div>
 </div>
 

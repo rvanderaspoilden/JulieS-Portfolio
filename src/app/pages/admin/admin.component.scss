@@ -6,4 +6,14 @@
   app-category-manager, app-picture-manager {
     width: 95%;
   }
+
+  .login {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    input {
+      margin: 10px 0;
+    }
+  }
 }

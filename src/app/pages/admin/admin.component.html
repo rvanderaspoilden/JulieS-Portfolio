@@ -1,5 +1,14 @@
-<app-admin-header (panelToManageChanged)="setPanelToManage($event)"></app-admin-header>
+<ng-container *ngIf="user">
+  <app-admin-header (panelToManageChanged)="setPanelToManage($event)"></app-admin-header>
 
-<app-category-manager *ngIf="panelToManage === 'sub-categories'"></app-category-manager>
+  <app-category-manager *ngIf="panelToManage === 'sub-categories'"></app-category-manager>
 
-<app-picture-manager *ngIf="panelToManage === 'pictures'"></app-picture-manager>
+  <app-picture-manager *ngIf="panelToManage === 'pictures'"></app-picture-manager>
+</ng-container>
+
+<div class="login" *ngIf="!user">
+  <input type="email" placeholder="Email" #email />
+  <input type="password" placeholder="Password" #password />
+  <button mat-raised-button color="primary" (click)="login(email.value, password.value)">LOG IN</button>
+</div>
+

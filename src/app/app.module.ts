@@ -15,6 +15,8 @@ import { GetPicturesResolver } from './resolvers/get-pictures.resolver';
 import { AdminModule } from './pages/admin/admin.module';
 import { AboutComponent } from './pages/about/about.component';
 import { AboutModule } from './pages/about/about.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AboutModule } from './pages/about/about.module';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
 
     // My Modules
     HomeModule,

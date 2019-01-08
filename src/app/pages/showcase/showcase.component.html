@@ -14,7 +14,7 @@
          (mouseleave)="image.displayLegend = false">
 
       <img [src]="image.href" oncontextmenu="return false;" />
-      <span class="legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
+      <span class="legend" *ngIf="image.legend" [ngClass]="{'show': image.displayLegend, 'hide': !image.displayLegend}">{{ image.legend }}</span>
     </div>
   </div>
 </div>

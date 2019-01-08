@@ -1,2 +1,2 @@
 <img [src]="image.href" oncontextmenu="return false;" />
-<span class="legend">{{ image.legend }}</span>
+<span *ngIf="image.legend" class="legend">{{ image.legend }}</span>

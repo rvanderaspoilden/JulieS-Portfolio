@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
         linkTmp.children = [];
 
         Object.keys(links[link]).forEach(underlink => {
-          if (underlink !== 'pictures' && underlink !== 'context') {
+          if (underlink !== 'pictures' && underlink !== 'context' && underlink !== 'default') {
             const underlinkTmp = new Link();
             underlinkTmp.name = underlink;
             underlinkTmp.href = '/' + underlink;
