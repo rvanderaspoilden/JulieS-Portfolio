@@ -7,7 +7,7 @@ import { ViewImageComponent } from '../../../features/view-image/view-image.comp
 import { MatDialog } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
-import { FirebaseStorage } from '@angular/fire';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-picture-manager',
@@ -68,6 +68,7 @@ export class PictureManagerComponent implements OnInit {
 
   public createImage(): void {
     const imageToSave = new Image();
+    imageToSave.createdDate = moment().valueOf();
     delete imageToSave.id;
     delete  imageToSave.displayLegend;
 
@@ -90,8 +91,8 @@ export class PictureManagerComponent implements OnInit {
             this.db.database
               .ref(`${this.categorySelected.toLowerCase()}/${this.subCategorySelected}/pictures/${randomId}`)
               .set(imageToSave).then(() => {
-                this.legend = '';
-                this.curFile.value = '';
+              this.legend = '';
+              this.curFile.value = '';
             });
           } else {
             this.db.database

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ViewImageComponent } from '../../features/view-image/view-image.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-showcase',
@@ -57,23 +58,24 @@ export class ShowcaseComponent implements OnInit {
     });
 
     this.db.list<Image>(directory + '/pictures').valueChanges().subscribe((images: Image[]) => {
+      const sortedImages = _.orderBy(images, 'createdDate', 'asc');
       this.columns = new ImageColumns([], [], []);
 
-      for (let i = 0; i < images.length; i += 3) {
-        if (images[i]) {
-          this.columns.column1.push(images[i]);
+      for (let i = 0; i < sortedImages.length; i += 3) {
+        if (sortedImages[i]) {
+          this.columns.column1.push(sortedImages[i]);
         }
       }
 
-      for (let i = 1; i < images.length; i += 3) {
-        if (images[i]) {
-          this.columns.column2.push(images[i]);
+      for (let i = 1; i < sortedImages.length; i += 3) {
+        if (sortedImages[i]) {
+          this.columns.column2.push(sortedImages[i]);
         }
       }
 
-      for (let i = 2; i < images.length; i += 3) {
-        if (images[i]) {
-          this.columns.column3.push(images[i]);
+      for (let i = 2; i < sortedImages.length; i += 3) {
+        if (sortedImages[i]) {
+          this.columns.column3.push(sortedImages[i]);
         }
       }
 
