@@ -4,7 +4,7 @@
      [ngClass]="{'disabled': link.children}"
      class="itemMenu"> {{ link.name }} </a>
 
-  <div class="dropdown-container" [ngClass]="{'show': link.displayChildren, 'hide': !link.displayChildren}">
+  <div class="dropdown-container" *ngIf="link.children && link.children.length" [ngClass]="{'show': link.displayChildren, 'hide': !link.displayChildren}">
     <div *ngIf="link.displayChildren">
       <a [routerLink]="link.href"
          [queryParams]="{href: linkChild.name}"

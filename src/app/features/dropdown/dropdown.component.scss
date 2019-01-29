@@ -11,7 +11,7 @@
     font-size: 1em;
     color: rgba(0,0,0,0.5);
     cursor: pointer;
-    width: 9vw;
+    width: 100%;
     height: 100%;
     min-height: 70px;
     display: flex;
@@ -20,6 +20,8 @@
     text-transform: uppercase;
     padding: 0 7px;
     transition: background-color 0.5s;
+    border-bottom: 1px rgba(0,0,0,0.4) solid;
+    text-decoration: none;
   }
 
   .disabled {
@@ -40,8 +42,9 @@
     top: 70px;
     opacity: 0;
     transition: opacity 0.5s;
-    border: 2px rgba(0,0,0,0.5) solid;
+    border: 1px rgba(0,0,0,0.4) solid;
     border-top: none;
+    width: 100%;
 
     .itemMenu {
       background-color: white;
